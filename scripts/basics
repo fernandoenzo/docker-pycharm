@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e  # Exit immediately if a command exits with a non-zero status.
+set -x  # All executed commands are printed to the terminal
+
+PROGRAM=pycharm-professional-2018.2.2.tar.gz
+
+mkdir -p /usr/share/man/man1
+
+aptitude update ; aptitude install -y ca-certificates default-jre python3-all-dev
+
+wget -P /tmp/ https://bootstrap.pypa.io/get-pip.py
+python3 /tmp/get-pip.py
+pip install virtualenvwrapper
+
+export WORKON_HOME=/root/.virtualenvs
+export VIRTUALENV_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+alias lsvirtualenv="lsvirtualenv -b"
+
+wget -P /tmp/ https://download.jetbrains.com/python/$PROGRAM
+
+mkdir -p /usr/share/pycharm
+tar -xzf /tmp/$PROGRAM -C /usr/share/pycharm/ --strip 1
+
+unzip -d /root /tmp/scripts/PyCharm.zip
+
+apt-get -y autoremove ; aptitude -y autoclean ; apt-get -y autoclean
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.aptitude /root/.wget-hsts /root/.cache
