@@ -7,7 +7,7 @@ PROGRAM=pycharm-professional-2018.2.2.tar.gz
 
 mkdir -p /usr/share/man/man1
 
-aptitude update ; aptitude install -y ca-certificates default-jre python3-all-dev
+aptitude update ; aptitude install -y python3-all-dev
 
 wget -P /tmp/ https://bootstrap.pypa.io/get-pip.py
 python3 /tmp/get-pip.py
