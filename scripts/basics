@@ -3,7 +3,7 @@
 set -e  # Exit immediately if a command exits with a non-zero status.
 set -x  # All executed commands are printed to the terminal
 
-PROGRAM=pycharm-professional-2018.2.2.tar.gz
+PROGRAM=pycharm-professional-2018.2.3.tar.gz
 
 mkdir -p /usr/share/man/man1
 
